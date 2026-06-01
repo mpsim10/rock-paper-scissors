@@ -51,6 +51,14 @@ function playGame() {
     playRound(getHumanChoice(), getCompChoice())
   };
 
+  if (humanScore > compScore) {
+    console.log("you win the game!");
+  } else if (humanScore == compScore) {
+    console.log("it's a tie");
+  } else {
+    console.log("you lose the game :(");
+  };
+
 };
 
 playGame();
