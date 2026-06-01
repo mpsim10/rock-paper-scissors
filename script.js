@@ -1,3 +1,6 @@
+const humanScore = 0;
+const computerScore = 0;
+
 function getComputerChoice() {
   const n = Math.ceil(Math.random() * 3);
   switch (n) {
@@ -14,10 +17,6 @@ function getComputerChoice() {
   };
 };
 
-console.log(getComputerChoice());
-
 function getHumanChoice() {
   return prompt("rock, paper, or scissors?")
 };
-
-console.log(getHumanChoice());
