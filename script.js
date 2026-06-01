@@ -25,31 +25,28 @@ function playGame() {
 
   function playRound(humanInput, compChoice) {
     const humanChoice = humanInput.toLowerCase();
-    let result;
     if (humanChoice == compChoice) {
-      result = "tie";
+      console.log("you both chose " + humanChoice);
     } else if (
       (humanChoice == "paper" && compChoice == "rock") 
       || (humanChoice == "scissors" && compChoice == "paper") 
       || (humanChoice == "rock" && compChoice == "scissors")
     ) {
-      result = "win";
+      console.log("you win! " + humanChoice + " beats " + compChoice);
       humanScore++;
     } else {
-      result = "lose";
+      console.log("you lose :( " + compChoice + " beats " + humanChoice);
       compScore++;
     };
-    console.log("you chose " + humanChoice);
-    console.log("the computer chose " + compChoice);
-    console.log("you " + result);
-    console.log("human score: " + humanScore);
-    console.log("computer score: " + compScore);
+    console.log("human: " + humanScore + " | computer: " + compScore);
   };
 
   for (let i = 1; i < 6; i++) {
     console.log("round " + i);
     playRound(getHumanChoice(), getCompChoice())
   };
+
+  console.log("GAME OVER");
 
   if (humanScore > compScore) {
     console.log("you win the game!");
