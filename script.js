@@ -1,11 +1,10 @@
 function testGame() {
   let humanScore = 0;
   let computerScore = 0;
+  let resultMessage;
 
-  const options = ["rock", "paper", "scissors"];
-
-  function playRound() {
-    
+  function playRound() {    
+    const options = ["rock", "paper", "scissors"];
     // determine the index of the option corresponding to the human's choice
     function getHumanChoice() {
       const input = prompt("rock, paper, or scissors?");
@@ -16,11 +15,9 @@ function testGame() {
       };
       return undefined;
     };
-
     const human = getHumanChoice();
     // generate a random index in the options array to assign as the computer's choice
     const computer = Math.floor(Math.random() * 3);
-
     // compare index values to determine the winner and increase points
     function resolveRound() {
       const difference = human - computer;
@@ -32,7 +29,6 @@ function testGame() {
         computerScore++;
       };
     };
-    
     function displayResults() {
       alert(`
       you chose ${options[human]}
@@ -40,20 +36,40 @@ function testGame() {
       human ${humanScore} | computer ${computerScore}
       `);
     };
-
     // check if the input returns a defined index before trying to resolve the round
     if (!isNaN(human)) {
       resolveRound(human, computer);
       displayResults();
     } else {
-      alert("invalid entry – you lose! refresh to start again");
+      alert("invalid entry, round forfeited");
     };
+  };
+
+  function resolveGame() {
+    const difference = humanScore - computerScore;
+    if (difference === 0) {
+      resultMessage = "it was a tie :|"
+    } else if (difference > 0) {
+      resultMessage = "you won! :D"
+    } else {
+      resultMessage = "you lost. :("
+    };
+  }
+
+  function displayResults() {
+    alert(`
+    final score: human ${humanScore}, computer ${computerScore}
+    ${resultMessage}
+    refresh to play again
+    `);
   };
 
   // play 5 rounds of the game
   for (let i = 0; i < 5; i++) {
     playRound();
   };
+  resolveGame();
+  displayResults();
 
 };
 
