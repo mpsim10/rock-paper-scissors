@@ -17,33 +17,47 @@ function isValidChoice(choice) {
   return !isNaN(humanChoiceIndex(choice));
 };
 
-function computerChoiceIndex() {
+function getComputerChoice() {
   return Math.floor(Math.random() * 3);
 };
 
 function compareChoices(humanIndex, computerIndex) {
   const difference = humanIndex - computerIndex;
   if (difference === 0) {
-    return "tie"
+    return "tie";
   } else if (difference === 1 || difference === -2) {
-    return "win"
+    return "win";
   } else {
-    return "lose"
+    return "lose";
   };
 };
 
+function testGame() {
+  let humanScore = 0;
+  let computerScore = 0;
 
+  function testRound() {
 
-function testRound() {
+    const humanChoice = getHumanChoice();
+    const humanIndex = humanChoiceIndex(humanChoice);
+    const computerIndex = getComputerChoice();
 
-  let humanChoice = getHumanChoice()
-  const humanIndex = humanChoiceIndex(humanChoice);
-  const computerIndex = computerChoiceIndex();
+    if (isValidChoice(humanChoice)) {
+      console.log(`you chose ${options[humanIndex]}`);
+      console.log(`the computer chose ${options[computerIndex]}`);
+      console.log(`you ${compareChoices(humanIndex, computerIndex)}`);
+    } else {
+      alert("invalid entry, refresh to start again");
+    }
+  
+  };
 
-  console.log(isValidChoice(humanChoice));
-  console.log(`you chose ${options[humanIndex]}`);
-  console.log(`the computer chose ${options[computerIndex]}`);
-  console.log(`you ${compareChoices(humanIndex, computerIndex)}`);
+  testRound();
+  testRound();
+  testRound();
+  testRound();
+  testRound();
+
 };
 
-testRound();
+testGame();
