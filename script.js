@@ -1,10 +1,11 @@
-function testGame() {
+function playGame() {
   let humanScore = 0;
   let computerScore = 0;
   let resultMessage;
 
   function playRound() {    
     const options = ["rock", "paper", "scissors"];
+
     // determine the index of the option corresponding to the human's choice
     function getHumanChoice() {
       const input = prompt("rock, paper, or scissors?");
@@ -15,9 +16,11 @@ function testGame() {
       };
       return undefined;
     };
+
     const human = getHumanChoice();
     // generate a random index in the options array to assign as the computer's choice
     const computer = Math.floor(Math.random() * 3);
+    
     // compare index values to determine the winner and increase points
     function resolveRound() {
       const difference = human - computer;
@@ -29,6 +32,7 @@ function testGame() {
         computerScore++;
       };
     };
+
     function displayResults() {
       alert(`
       you chose ${options[human]}
@@ -36,6 +40,7 @@ function testGame() {
       human ${humanScore} | computer ${computerScore}
       `);
     };
+    
     // check if the input returns a defined index before trying to resolve the round
     if (!isNaN(human)) {
       resolveRound(human, computer);
@@ -73,4 +78,4 @@ function testGame() {
 
 };
 
-testGame();
+playGame();
