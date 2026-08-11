@@ -4,7 +4,6 @@ function testGame() {
 
   const options = ["rock", "paper", "scissors"];
 
-  
   function playRound() {
     
     // determine the index of the option corresponding to the human's choice
@@ -35,24 +34,26 @@ function testGame() {
     };
     
     function displayResults() {
+      alert(`
+      you chose ${options[human]}
+      the computer chose ${options[computer]}
+      human ${humanScore} | computer ${computerScore}
+      `);
+    };
 
-      console.log(`you chose ${options[human]}`);
-      console.log(`the computer chose ${options[computer]}`);
-      console.log(`human ${humanScore} | computer ${computerScore}`);
-
-    }
-
-    // check if the input is valid before trying to resolve the round
+    // check if the input returns a defined index before trying to resolve the round
     if (!isNaN(human)) {
       resolveRound(human, computer);
       displayResults();
     } else {
       alert("invalid entry – you lose! refresh to start again");
     };
-
   };
 
-  playRound();
+  // play 5 rounds of the game
+  for (let i = 0; i < 5; i++) {
+    playRound();
+  };
 
 };
 
