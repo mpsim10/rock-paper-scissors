@@ -23,11 +23,13 @@ function updateDisplay(display, human, computer) {
 
 function playGame() {
 
-  let humanScore = 0;
-  let computerScore = 0;
+  let hScore = 0;
+  let cScore = 0;
+
+  const updateScore = () => scoreDisplay.textContent = `human: ${hScore} | computer: ${cScore}`;
 
   function endGame() {
-    const winner = humanScore === 5 ? "human" : "computer";
+    const winner = hScore === 5 ? "human" : "computer";
     choiceButtons.forEach(button => (button.disabled = true));
     messageDisplay.textContent = `${winner} wins! refresh to play again`;
   };
@@ -35,12 +37,12 @@ function playGame() {
   function playRound(playerSelection) {
     const human = Number(playerSelection);
     const computer = Math.floor(Math.random() * 3);
-    const difference = human - computer;
-    if (difference === 1 || difference === -2) {humanScore++};
-    if (difference === -1 || difference === 2) {computerScore++};
+    const diff = human - computer;
+    if (diff === 1 || diff === -2) {hScore++};
+    if (diff === -1 || diff === 2) {cScore++};
     updateDisplay(messageDisplay, choices[human], choices[computer]);
-    updateDisplay(scoreDisplay, humanScore, computerScore);
-    if (humanScore === 5 || computerScore === 5) {endGame()}
+    updateScore();
+    if (hScore === 5 || cScore === 5) {endGame()}
   };
   
   const choiceButtons = document.querySelectorAll(".choice-button");
