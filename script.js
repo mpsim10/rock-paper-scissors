@@ -1,40 +1,36 @@
-const choices = ["🪨", "📄", "✂️"];
+const choices = ["rock", "paper", "scissors"];
 
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
   let resultMessage;
 
-  function playRound(playerSelection) {    
+  const messageDisplay = document.createElement("div");
+  messageDisplay.id = "message-display";
+  messageDisplay.textContent = "make your first choice to begin";
+  document.body.appendChild(messageDisplay);
 
+  const scoreDisplay = document.createElement("div");
+  scoreDisplay.id = "score-display";
+  document.body.appendChild(scoreDisplay);
+
+  function updateDisplay(display, human, computer) {
+    display.textContent = `human: ${human} | computer: ${computer}`;
+  };
+
+  function playRound(playerSelection) {
     const human = Number(playerSelection);
     const computer = Math.floor(Math.random() * 3);
-    
-    function resolveRound() {
-      const difference = human - computer;
-      if (difference === 0) {
-        return;
-      } else if (difference === 1 || -2) {
-        humanScore++;
-      } else {
-        computerScore++;
-      };
-    };
-
-    function displayResults() {
-      alert(`
-      you chose ${choices[human]}
-      the computer chose ${choices[computer]}
-      human ${humanScore} | computer ${computerScore}
-      `);
-    };
-    
-    if (!isNaN(human)) {
-      resolveRound(human, computer);
-      displayResults();
+    const difference = human - computer;
+    if (difference === 0) {
+      return;
+    } else if (difference === 1 || -2) {
+      humanScore++;
     } else {
-      alert("invalid entry, round forfeited");
+      computerScore++;
     };
+    updateDisplay(messageDisplay, choices[human], choices[computer]);
+    updateDisplay(scoreDisplay, humanScore, computerScore);
   };
 
   function resolveGame() {
@@ -46,7 +42,7 @@ function playGame() {
     } else {
       resultMessage = "you lost. :("
     };
-  }
+  };
 
   function displayResults() {
     alert(`
