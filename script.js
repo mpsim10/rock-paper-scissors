@@ -31,13 +31,9 @@ function playGame() {
     const human = Number(playerSelection);
     const computer = Math.floor(Math.random() * 3);
     const difference = human - computer;
-    if (difference === 0) {
-      return;
-    } else if (difference === 1 || -2) {
-      humanScore++;
-    } else {
-      computerScore++;
-    };
+    if (difference === 1 || difference === -2) {humanScore++};
+    if (difference === -1 || difference === 2) {computerScore++};
+
     updateDisplay(messageDisplay, choices[human], choices[computer]);
     updateDisplay(scoreDisplay, humanScore, computerScore);
   };
