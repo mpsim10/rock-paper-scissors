@@ -1,16 +1,17 @@
+const choices = ["🪨", "📄", "✂️"];
+
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
   let resultMessage;
 
   function playRound() {    
-    const options = ["rock", "paper", "scissors"];
 
     // determine the index of the option corresponding to the human's choice
     function getHumanChoice() {
       const input = prompt("rock, paper, or scissors?");
-      for (let i = 0; i < options.length; i++) {
-        if (options[i].match(input.toLowerCase())) {
+      for (let i = 0; i < choices.length; i++) {
+        if (choices[i].match(input.toLowerCase())) {
           return i;
         };
       };
@@ -35,8 +36,8 @@ function playGame() {
 
     function displayResults() {
       alert(`
-      you chose ${options[human]}
-      the computer chose ${options[computer]}
+      you chose ${choices[human]}
+      the computer chose ${choices[computer]}
       human ${humanScore} | computer ${computerScore}
       `);
     };
@@ -78,4 +79,9 @@ function playGame() {
 
 };
 
-playGame();
+for (let i = 0; i < choices.length; i++) {
+  const choiceButton = document.createElement("button");
+  choiceButton.setAttribute("id", choices[i]);
+  choiceButton.innerText = choices[i];
+  document.body.appendChild(choiceButton);
+};
