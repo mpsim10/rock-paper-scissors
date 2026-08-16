@@ -17,10 +17,6 @@ const scoreDisplay = document.createElement("div");
 scoreDisplay.id = "score-display";
 document.body.appendChild(scoreDisplay);
 
-function updateDisplay(display, human, computer) {
-  display.textContent = `human: ${human} | computer: ${computer}`;
-};
-
 function playGame() {
 
   let hScore = 0;
@@ -40,7 +36,7 @@ function playGame() {
     const diff = human - computer;
     if (diff === 1 || diff === -2) {hScore++};
     if (diff === -1 || diff === 2) {cScore++};
-    updateDisplay(messageDisplay, choices[human], choices[computer]);
+    messageDisplay.textContent = `human: ${choices[human]} | computer: ${choices[computer]}`;
     updateScore();
     if (hScore === 5 || cScore === 5) {endGame()}
   };
